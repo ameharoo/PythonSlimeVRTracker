@@ -173,13 +173,13 @@ class SlimeVRTrackerEmulator():
         await self.send_trackers_data(sock, remote_addr)
         await self.send_feature_flags(sock, remote_addr)
     
-    async def do(self, addr):
-        loop = asyncio.get_event_loop()
+    # async def do(self, addr):
+    #     loop = asyncio.get_event_loop()
 
-        await self.send_trackers_data(self.sock, addr)
+    #     await self.send_trackers_data(self.sock, addr)
 
-        recv_buf, remote_addr = await loop.sock_recvfrom(self.sock, 1024)
-        await self.handle_packet(self.sock, remote_addr, recv_buf)
+    #     recv_buf, remote_addr = await loop.sock_recvfrom(self.sock, 1024)
+    #     await self.handle_packet(self.sock, remote_addr, recv_buf)
 
 
     async def run(self, addr):
@@ -190,9 +190,9 @@ class SlimeVRTrackerEmulator():
 
         await self.send_tracker_discovery_packet(self.sock, addr)
 
-        # while True:
-        #     self.send_trackers_data(self.sock, addr)
+        while True:
+            self.send_trackers_data(self.sock, addr)
 
-        #     recv_buf, remote_addr = await loop.sock_recvfrom(self.sock, 1024)
-        #     await self.handle_packet(self.sock, remote_addr, recv_buf)
+            recv_buf, remote_addr = await loop.sock_recvfrom(self.sock, 1024)
+            await self.handle_packet(self.sock, remote_addr, recv_buf)
 
