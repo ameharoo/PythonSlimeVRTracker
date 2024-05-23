@@ -1,5 +1,5 @@
-[![PyPI - latest](https://img.shields.io/pypi/v/slimevr-tracker-emulator?label=latest&logo=pypi)](https://pypi.org/project/iconsdk)
-[![PyPI - Python](https://img.shields.io/pypi/pyversions/slimevr-tracker-emulator?logo=pypi)](https://pypi.org/project/iconsdk)
+[![PyPI - latest](https://img.shields.io/pypi/v/slimevr-tracker-emulator?label=latest&logo=pypi)](https://pypi.org/project/slimevr-tracker-emulator/)
+[![PyPI - Python](https://img.shields.io/pypi/pyversions/slimevr-tracker-emulator?logo=pypi)](https://pypi.org/project/slimevr-tracker-emulator/)
 
 # SlimeVR Tracker Emulator
 
