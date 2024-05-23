@@ -5,4 +5,4 @@
 
 Simple **async lib** for [SlimeVR](https://github.com/SlimeVR) tracker emulation
 
-> See [srv.py](srv.py) for examples
+> See [srv.py](https://github.com/ameharoo/PythonSlimeVRTracker/blob/master/srv.py) for examples
