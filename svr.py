@@ -1,9 +1,9 @@
 import asyncio
 
-from slimevr.async_tracker_emulator import SlimeVRTrackerEmulator
+from src.slimevr_tracker_emulator.async_tracker_emulator import SlimeVRTrackerEmulatorAsync
 
 UDP_IP = "127.0.0.1"
 UDP_PORT = 6969
 
-tracker_emulator = SlimeVRTrackerEmulator()
+tracker_emulator = SlimeVRTrackerEmulatorAsync()
 asyncio.run(tracker_emulator.run((UDP_IP, UDP_PORT)))

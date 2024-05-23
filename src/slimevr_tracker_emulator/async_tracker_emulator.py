@@ -1,16 +1,13 @@
 
 import asyncio
-import math
 from socket import AF_INET, SOCK_DGRAM, socket
-import time
-
 import numpy as np
 
-from slimevr.tracker_packet import DatagramPacket
-from slimevr.tracker_types import Helper, ImuType, PacketType, SensorAcceleration, SensorData, SensorPosition, SensorRotationQuat, SensorState
+from src.slimevr_tracker_emulator.tracker_packet import DatagramPacket
+from src.slimevr_tracker_emulator.tracker_types import Helper, ImuType, PacketType, SensorAcceleration, SensorData, SensorPosition, SensorRotationQuat, SensorState
 
 
-class SlimeVRTrackerEmulator():
+class SlimeVRTrackerEmulatorAsync():
 
     _packet_number: int
     _packet_number_lock: asyncio.Lock

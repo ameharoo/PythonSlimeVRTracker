@@ -1,5 +1,5 @@
 import struct
-from slimevr.tracker_types import BoardType, HardwareMcuType, ImuType, PacketType, SensorData
+from src.slimevr_tracker_emulator.tracker_types import BoardType, HardwareMcuType, ImuType, PacketType, SensorData
 
 
 class DatagramPacket:

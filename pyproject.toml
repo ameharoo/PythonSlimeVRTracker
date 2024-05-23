@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "slimevr_tracker_emulator"
+version = "0.0.1"
+authors = [
+  { name="Ameharu", email="me@ameha.ru" },
+]
+description = "A small example package"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "numpy",
+]
+
+[project.urls]
+Homepage = "https://github.com/ameharoo/PythonSlimeVRTracker"
+Issues = "https://github.com/ameharoo/PythonSlimeVRTracker/issues"
