@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 import math
 
+import numpy as np
+
 
 class HardwareMcuType:
     MCU_UKNOWN = 0
@@ -68,9 +70,55 @@ class SensorAcceleration:
     need_update: bool = True
 
 @dataclass
+class SensorPosition:
+    x: float
+    y: float
+    z: float
+    
+    need_update: bool = True
+
+@dataclass
 class SensorData:
     id: int
     state: SensorState
     type: ImuType
     rotation: SensorRotationQuat
     acceleration: SensorAcceleration
+    position: SensorPosition
+
+
+class Helper:
+    @staticmethod
+    def normalize(vector: np.ndarray):
+        if (np.all(vector == 0)):
+            return vector
+        
+        return vector / np.linalg.norm(vector)
+
+    # Find quaternoin of rotation A to B
+    @classmethod
+    def find_quaternion_of_rotation(cls, A, B):
+
+        A_norm = cls.normalize(A)
+        B_norm = cls.normalize(B)
+        
+        dot_product = np.dot(A_norm, B_norm)
+        if dot_product > 0.999999:  # Vectors are almost the same
+            return np.array([1.0, 0.0, 0.0, 0.0])
+        elif dot_product < -0.999999:  # Vectors are opposite
+            # Find orthogonal vector to A_norm for axis of rotation
+            orthogonal = np.cross(A_norm, [1, 0, 0])
+            if np.linalg.norm(orthogonal) < 0.01:
+                orthogonal = np.cross(A_norm, [0, 1, 0])
+            orthogonal = cls.normalize(orthogonal)
+            return np.array([0.0] + list(orthogonal))
+        
+        cross_product = np.cross(A_norm, B_norm)
+        s = np.sqrt((1 + dot_product) * 2)
+        inv_s = 1 / s
+        
+        q = np.zeros(4)
+        q[0] = s * 0.5
+        q[1:] = cross_product * inv_s
+        
+        return q

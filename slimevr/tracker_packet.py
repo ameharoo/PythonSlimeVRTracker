@@ -1,5 +1,5 @@
 import struct
-from slimevr.types import BoardType, HardwareMcuType, ImuType, PacketType, SensorData
+from slimevr.tracker_types import BoardType, HardwareMcuType, ImuType, PacketType, SensorData
 
 
 class DatagramPacket:
@@ -120,7 +120,7 @@ class DatagramPacket:
         self.send_packet_type(PacketType.PACKET_ROTATION_DATA)
         self.send_long(packet_number)
         self.send_byte(sensor_id)
-        self.send_byte(0)
+        self.send_byte(1)
         self.send_float(x)
         self.send_float(y)
         self.send_float(z)
