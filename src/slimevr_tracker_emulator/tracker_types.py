@@ -1,23 +1,24 @@
 from dataclasses import dataclass
+from enum import Enum
 import math
 
 import numpy as np
 
 
-class HardwareMcuType:
+class HardwareMcuType(Enum):
     MCU_UKNOWN = 0
     MCU_DEV_RESERVED = 250
 
-class ImuType:
+class ImuType(Enum):
     IMU_UNKNOWN = 0
     BNO080 = 3
     IMU_DEV_RESERVED = 250
 
-class BoardType:
+class BoardType(Enum):
     BOARD_UNKNOWN = 0
     BOARD_SLIMEVR_DEV = 2
 
-class PacketType:
+class PacketType(Enum):
     PACKET_HEARTBEAT = 0
     PACKET_RECEIVE_HEARTBEAT = 1
     PACKET_HANDSHAKE = 3
@@ -29,7 +30,7 @@ class PacketType:
     PACKET_ROTATION_AND_ACCELERATION = 23
 
 
-class SensorState:
+class SensorState(Enum):
     SENSOR_OFFLINE = 0
     SENSOR_OK = 1
     SENSOR_ERROR = 2

@@ -68,11 +68,11 @@ class DatagramPacket:
         FIRMWARE_VERSION = "0.4.0"
         MAC = bytes([120] * 6)
         
-        self.send_packet_type(PacketType.PACKET_HANDSHAKE)
+        self.send_packet_type(PacketType.PACKET_HANDSHAKE.value)
         self.send_long(0)
-        self.send_int(BoardType.BOARD_SLIMEVR_DEV)
-        self.send_int(ImuType.IMU_DEV_RESERVED)
-        self.send_int(HardwareMcuType.MCU_DEV_RESERVED)
+        self.send_int(BoardType.BOARD_SLIMEVR_DEV.value)
+        self.send_int(ImuType.IMU_DEV_RESERVED.value)
+        self.send_int(HardwareMcuType.MCU_DEV_RESERVED.value)
         self.send_int(0)
         self.send_int(0)
         self.send_int(0)
@@ -81,23 +81,23 @@ class DatagramPacket:
         self.send_bytes(MAC)
 
     def send_heartbeat(self, packet_number: int):
-        self.send_packet_type(PacketType.PACKET_HEARTBEAT)
+        self.send_packet_type(PacketType.PACKET_HEARTBEAT.value)
         self.send_long(packet_number)
 
     def send_feature_flags(self, packet_number: int):
-        self.send_packet_type(PacketType.PACKET_FEATURE_FLAGS)
+        self.send_packet_type(PacketType.PACKET_FEATURE_FLAGS.value)
         self.send_long(packet_number)
         self.send_byte(0)
 
     def send_sensor_info(self, packet_number: int, sensor: SensorData):
-        self.send_packet_type(PacketType.PACKET_SENSOR_INFO)
+        self.send_packet_type(PacketType.PACKET_SENSOR_INFO.value)
         self.send_long(packet_number)
         self.send_byte(sensor.id)
-        self.send_byte(sensor.state)
-        self.send_byte(sensor.type)
+        self.send_byte(sensor.state.value)
+        self.send_byte(sensor.type.value)
 
     def send_sensor_acceleration(self, packet_number: int, sensor_id: int, x: float, y: float, z: float):
-        self.send_packet_type(PacketType.PACKET_ACCEL)
+        self.send_packet_type(PacketType.PACKET_ACCEL.value)
         self.send_long(packet_number)
         self.send_float(x)
         self.send_float(y)
@@ -105,7 +105,7 @@ class DatagramPacket:
         self.send_byte(sensor_id)
 
     def send_sensor_rotation_and_acceleration(self, packet_number: int, sensor_id: int, qx: float, qy: float, qz: float, qw: float, x: float, y: float, z: float):
-        self.send_packet_type(PacketType.PACKET_ROTATION_AND_ACCELERATION)
+        self.send_packet_type(PacketType.PACKET_ROTATION_AND_ACCELERATION.value)
         self.send_long(packet_number)
         self.send_byte(sensor_id)
         self.send_short(int(qy * (1 << 15)))
@@ -117,7 +117,7 @@ class DatagramPacket:
         self.send_float(int(z * (1 << 7)))
 
     def send_sensor_rotation(self, packet_number: int, sensor_id: int, x: float, y: float, z: float, w: float):
-        self.send_packet_type(PacketType.PACKET_ROTATION_DATA)
+        self.send_packet_type(PacketType.PACKET_ROTATION_DATA.value)
         self.send_long(packet_number)
         self.send_byte(sensor_id)
         self.send_byte(1)
